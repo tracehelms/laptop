@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+#
+# Install everything!
+
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+
+set -e
+
+fancy_echo() {
+  echo "\n$1"
+}
+
+fancy_echo "Installing Homebrew ..."
+  ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
+  brew update
+
+fancy_echo "Installing git ..."
+  brew install git
+  brew install git-flow
+
+fancy_echo "Installing Postgres ..."
+  brew install postgres --no-python
+  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents/
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  initdb /usr/local/var/postgres -E utf8
+
+fancy_echo "Installing MySQL ..."
+   brew install mysql
+   ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents/
+   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+fancy_echo "Installing Redis ..."
+  brew install redis
+  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+
+fancy_echo "Installing Mercurial ..."
+  brew install mercurial
+
+fancy_echo "Installing vim ..."
+  brew install vim
+
+fancy_echo "Installing vundle ..."
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+fancy_echo "Installing ImageMagick ..."
+  brew install imagemagick
+
+fancy_echo "Installing QT ..."
+  brew install qt
+
+fancy_echo "Installing GNU Compiler Collection ..."
+  brew tap homebrew/dupes
+  brew install apple-gcc42
+
+fancy_echo "Upgrading and linking OpenSSL ..."
+  brew install openssl
+
+fancy_echo "Installing rvm ..."
+  curl -L https://get.rvm.io | bash
+  source ~/.bash_profile
+
+fancy_echo "Installing latest Ruby 2.0.0 ..."
+  rvm install 2.0.0
+  rvm --default use 2.0.0
