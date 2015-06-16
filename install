@@ -11,7 +11,7 @@ fancy_echo() {
 }
 
 fancy_echo "Installing Homebrew ..."
-  ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
+  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
   brew update
 
 fancy_echo "Installing git ..."
@@ -39,6 +39,9 @@ fancy_echo "Installing Mercurial ..."
 
 fancy_echo "Installing vim ..."
   brew install vim
+
+fancy_echo "Installing The Silver Searcher"
+  brew install the_silver_searcher
 
 fancy_echo "Installing vundle ..."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
