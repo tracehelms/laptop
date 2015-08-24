@@ -64,5 +64,5 @@ fancy_echo "Installing rvm ..."
   source ~/.bash_profile
 
 fancy_echo "Installing latest Ruby 2.0.0 ..."
-  rvm install 2.0.0
-  rvm --default use 2.0.0
+  rvm install ruby --latest
+  # rvm --default use 2.2.3
