@@ -11,31 +11,33 @@ fancy_echo() {
 }
 
 fancy_echo "Installing Homebrew ..."
-  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update
 
 fancy_echo "Installing git ..."
   brew install git
-  brew install git-flow
+#  brew install git-flow
 
 fancy_echo "Installing Postgres ..."
   brew install postgres --no-python
   ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents/
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  rm -rf /usr/local/var/postgres/*
   initdb /usr/local/var/postgres -E utf8
+  createuser -s postgres
 
 fancy_echo "Installing MySQL ..."
-   brew install mysql
-   ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents/
-   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+#  brew install mysql
+#  ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents/
+#  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 fancy_echo "Installing Redis ..."
-  brew install redis
-  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+#  brew install redis
+#  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
+#  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 
 fancy_echo "Installing Mercurial ..."
-  brew install mercurial
+#  brew install mercurial
 
 fancy_echo "Installing vim ..."
   brew install vim
@@ -47,22 +49,32 @@ fancy_echo "Installing vundle ..."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 fancy_echo "Installing ImageMagick ..."
-  brew install imagemagick
+#  brew install imagemagick
 
 fancy_echo "Installing QT ..."
-  brew install qt
+#  brew install qt
 
 fancy_echo "Installing GNU Compiler Collection ..."
-  brew tap homebrew/dupes
-  brew install apple-gcc42
+#  brew tap homebrew/dupes
+#  brew install apple-gcc42
 
 fancy_echo "Upgrading and linking OpenSSL ..."
-  brew install openssl
+#  brew install openssl
+
+fancy_echo "Installing npm ..."
+  brew install npm
 
 fancy_echo "Installing rvm ..."
-  curl -L https://get.rvm.io | bash
-  source ~/.bash_profile
+#  curl -L https://get.rvm.io | bash
+#  source ~/.bash_profile
 
 fancy_echo "Installing latest Ruby 2.0.0 ..."
-  rvm install ruby --latest
-  # rvm --default use 2.2.3
+#  rvm install ruby --latest
+#  rvm --default use 2.2.3
+
+fancy_echo "Installing Erlang ..."
+brew install erlang
+
+fancy_echo "Installing kiex, Elixir version manager ..."
+/curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+
