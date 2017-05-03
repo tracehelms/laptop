@@ -78,3 +78,8 @@ brew install erlang
 fancy_echo "Installing kiex, Elixir version manager ..."
 /curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 
+fancy_echo "Installing diff-so-fancy ..."
+ brew install diff-so-fancy
+
+fancy_echo "Done! Now you need to manually install the following: "
+fancy_echo "- https://github.com/ferd/erlang-history"
