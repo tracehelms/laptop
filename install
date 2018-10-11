@@ -26,60 +26,58 @@ fancy_echo "Installing Postgres ..."
   initdb /usr/local/var/postgres -E utf8
   createuser -s postgres
 
-fancy_echo "Installing MySQL ..."
+# fancy_echo "Installing MySQL ..."
 #  brew install mysql
 #  ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents/
 #  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 fancy_echo "Installing Redis ..."
-#  brew install redis
-#  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
-#  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+ brew install redis
+ ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
+ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
 
-fancy_echo "Installing Mercurial ..."
-#  brew install mercurial
+fancy_echo "Installing neovim ..."
+  brew install neovim
 
-fancy_echo "Installing vim ..."
-  brew install vim
+# fancy_echo "Installing The Silver Searcher"
+#   brew install the_silver_searcher
 
-fancy_echo "Installing The Silver Searcher"
-  brew install the_silver_searcher
+fancy_echo "Installing fzf"
+  brew install fzf
+
+fancy_echo "Installing ripgrep"
+  brew install ripgrep
 
 fancy_echo "Installing vundle ..."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-fancy_echo "Installing ImageMagick ..."
-#  brew install imagemagick
-
-fancy_echo "Installing QT ..."
-#  brew install qt
-
-fancy_echo "Installing GNU Compiler Collection ..."
+# fancy_echo "Installing GNU Compiler Collection ..."
 #  brew tap homebrew/dupes
 #  brew install apple-gcc42
 
-fancy_echo "Upgrading and linking OpenSSL ..."
+# fancy_echo "Upgrading and linking OpenSSL ..."
 #  brew install openssl
 
 fancy_echo "Installing npm ..."
   brew install npm
 
-fancy_echo "Installing rvm ..."
-#  curl -L https://get.rvm.io | bash
-#  source ~/.bash_profile
-
-fancy_echo "Installing latest Ruby 2.0.0 ..."
-#  rvm install ruby --latest
-#  rvm --default use 2.2.3
-
 fancy_echo "Installing Erlang ..."
-brew install erlang
+  brew install erlang
 
-fancy_echo "Installing kiex, Elixir version manager ..."
-/curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+fancy_echo "Installing asdf, Language version manager ..."
+  # Update to latest version
+  # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
+  asdf plugin-add elixir
+  asdf plugin-add nodejs
+
+fancy_echo "Installing Elixir ..."
+  asdf install elixir
+
+fancy_echo "Installing node.js ..."
+  asdf install nodejs
 
 fancy_echo "Installing diff-so-fancy ..."
- brew install diff-so-fancy
+  brew install diff-so-fancy
 
 fancy_echo "Done! Now you need to manually install the following: "
 fancy_echo "- https://github.com/ferd/erlang-history"
