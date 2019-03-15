@@ -26,11 +26,6 @@ fancy_echo "Installing Postgres ..."
   initdb /usr/local/var/postgres -E utf8
   createuser -s postgres
 
-# fancy_echo "Installing MySQL ..."
-#  brew install mysql
-#  ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents/
-#  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-
 fancy_echo "Installing Redis ..."
  brew install redis
  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
@@ -38,9 +33,6 @@ fancy_echo "Installing Redis ..."
 
 fancy_echo "Installing neovim ..."
   brew install neovim
-
-# fancy_echo "Installing The Silver Searcher"
-#   brew install the_silver_searcher
 
 fancy_echo "Installing fzf"
   brew install fzf
@@ -58,22 +50,18 @@ fancy_echo "Installing vundle ..."
 # fancy_echo "Upgrading and linking OpenSSL ..."
 #  brew install openssl
 
-fancy_echo "Installing npm ..."
-  brew install npm
-
-fancy_echo "Installing Erlang ..."
-  brew install erlang
-
+# TODO update
+# install this manually for now
 fancy_echo "Installing asdf, Language version manager ..."
   # Update to latest version
   # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
-  asdf plugin-add elixir
-  asdf plugin-add nodejs
 
 fancy_echo "Installing Elixir ..."
+  asdf plugin-add elixir
   asdf install elixir
 
 fancy_echo "Installing node.js ..."
+  asdf plugin-add nodejs
   asdf install nodejs
 
 fancy_echo "Installing diff-so-fancy ..."
