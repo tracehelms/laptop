@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #
-# Install everything!
+# Basic setup for a new Mac
+#
+# DO THIS FIRST: Install XCode, start it, and accept the ToS.
 
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
@@ -14,58 +16,49 @@ fancy_echo "Installing Homebrew ..."
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update
 
-fancy_echo "Installing git ..."
-  brew install git
-#  brew install git-flow
+fancy_echo "Installing all the Homebrew things..."
+brew install \
+  git \
+  postgres \
+  redis \
+  neovim \
+  fzf \
+  ripgrep \
+  diff-so-fancy \
+  erlang \
+  watchman \
+  openssl \
+  coreutils \
+  automake \
+  autoconf \
+  libyaml \
+  readline \
+  libxslt \
+  libtool \
+  unixodbc
 
-fancy_echo "Installing Postgres ..."
-  brew install postgres --no-python
-  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents/
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-  rm -rf /usr/local/var/postgres/*
+fancy_echo "Setting up Postgres..."
+  brew services start postgresql
   initdb /usr/local/var/postgres -E utf8
   createuser -s postgres
 
-fancy_echo "Installing Redis ..."
- brew install redis
- ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/
- launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+fancy_echo "Setting up Redis..."
+  brew services start redis
 
-fancy_echo "Installing neovim ..."
-  brew install neovim
-
-fancy_echo "Installing fzf"
-  brew install fzf
-
-fancy_echo "Installing ripgrep"
-  brew install ripgrep
-
-fancy_echo "Installing vundle ..."
+fancy_echo "Installing vundle..."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-# fancy_echo "Installing GNU Compiler Collection ..."
-#  brew tap homebrew/dupes
-#  brew install apple-gcc42
+fancy_echo "Installing asdf, Language version manager..."
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.0
+  echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+  echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
-# fancy_echo "Upgrading and linking OpenSSL ..."
-#  brew install openssl
-
-# TODO update
-# install this manually for now
-fancy_echo "Installing asdf, Language version manager ..."
-  # Update to latest version
-  # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
-
-fancy_echo "Installing Elixir ..."
+fancy_echo "Installing Elixir..."
   asdf plugin-add elixir
-  asdf install elixir
+  asdf install elixir 1.7.4
 
-fancy_echo "Installing node.js ..."
+fancy_echo "Installing node.js..."
   asdf plugin-add nodejs
-  asdf install nodejs
+  NODEJS_CHECK_SIGNATURES=no asdf install nodejs 8.12.0
 
-fancy_echo "Installing diff-so-fancy ..."
-  brew install diff-so-fancy
-
-fancy_echo "Done! Now you need to manually install the following: "
-fancy_echo "- https://github.com/ferd/erlang-history"
+fancy_echo "Done! Restart your terminal for changes to take effect."
