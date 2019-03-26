@@ -61,4 +61,8 @@ fancy_echo "Installing node.js..."
   asdf plugin-add nodejs
   NODEJS_CHECK_SIGNATURES=no asdf install nodejs 8.12.0
 
+
+fancy_echo "Installing global node packages..."
+  npm -g i stylelint ember-cli prettier tslint eslint typescript
+
 fancy_echo "Done! Restart your terminal for changes to take effect."
