@@ -19,13 +19,12 @@ fancy_echo "Installing Homebrew ..."
 fancy_echo "Installing all the Homebrew things..."
 brew install \
   git \
-  postgres \
+  postgresql \
   redis \
   neovim \
   fzf \
   ripgrep \
   diff-so-fancy \
-  erlang \
   watchman \
   openssl \
   coreutils \
@@ -48,19 +47,32 @@ fancy_echo "Setting up Redis..."
 fancy_echo "Installing vundle..."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
+fancy_echo "Need to set up .bashrc and .bash_profile file"
+
 fancy_echo "Installing asdf, Language version manager..."
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.0
   echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
   echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
+fancy_echo "Installing Erlang..."
+  asdf plugin-add erlang
+  asdf install erlang 21.0
+  asdf global erlang 21.0
+
 fancy_echo "Installing Elixir..."
   asdf plugin-add elixir
   asdf install elixir 1.7.4
+  asdf global elixir 1.7.4
 
 fancy_echo "Installing node.js..."
   asdf plugin-add nodejs
   NODEJS_CHECK_SIGNATURES=no asdf install nodejs 8.12.0
+  asdf global nodejs 8.12.0
 
+fancy_echo "Installing Ruby..."
+  asdf plugin-add ruby
+  asdf install ruby 2.6.3
+  asdf global ruby 2.6.3
 
 fancy_echo "Installing global node packages..."
   npm -g i stylelint ember-cli prettier tslint eslint typescript
