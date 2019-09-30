@@ -34,10 +34,12 @@ brew install \
   readline \
   libxslt \
   libtool \
-  unixodbc
+  unixodbc \
+  python3
 
 fancy_echo "Setting up Postgres..."
   brew services start postgresql
+  rm -rf /usr/local/var/postgres
   initdb /usr/local/var/postgres -E utf8
   createuser -s postgres
 
@@ -61,20 +63,27 @@ fancy_echo "Installing Erlang..."
 
 fancy_echo "Installing Elixir..."
   asdf plugin-add elixir
-  asdf install elixir 1.7.4
-  asdf global elixir 1.7.4
+  asdf install elixir 1.9.1
+  asdf global elixir 1.9.1
 
 fancy_echo "Installing node.js..."
   asdf plugin-add nodejs
-  NODEJS_CHECK_SIGNATURES=no asdf install nodejs 8.12.0
-  asdf global nodejs 8.12.0
+  NODEJS_CHECK_SIGNATURES=no asdf install nodejs 10.16.3
+  asdf global nodejs 10.16.3
 
 fancy_echo "Installing Ruby..."
   asdf plugin-add ruby
-  asdf install ruby 2.6.3
-  asdf global ruby 2.6.3
+  asdf install ruby 2.6.4
+  asdf global ruby 2.6.4
 
 fancy_echo "Installing global node packages..."
   npm -g i stylelint ember-cli prettier tslint eslint typescript
+
+fancy_echo "Installing Rust..."
+curl https://sh.rustup.rs -sSf | sh
+
+fancy_echo "Installing pip3 packages..."
+pip3 install neovim
+pip3 install awscli --upgrade --user
 
 fancy_echo "Done! Restart your terminal for changes to take effect."
