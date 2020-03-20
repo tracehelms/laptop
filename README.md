@@ -54,4 +54,4 @@ less ~/laptop.log
 
 ## Dotfiles
 
-Optionally, install my [dotfiles]() also.
+Optionally, install my [dotfiles](https://github.com/tracehelms/.dotfiles) also.
