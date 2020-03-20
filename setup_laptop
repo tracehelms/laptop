@@ -12,6 +12,9 @@ fancy_echo() {
   echo "$1"
 }
 
+# TODO - run this instead of installing xcode?
+# xcode-select --install
+
 if [ ! -r ~/.bash_profile ]; then
   echo -e 'if [ -r ~/.bashrc ]; then
     source ~/.bashrc
