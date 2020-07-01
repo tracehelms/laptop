@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#
-# Basic setup for a new Mac
-#
-# DO THIS FIRST: Install XCode, start it, and accept the ToS.
+#######################################################################
+#                      Basic setup for a new Mac                      #
+#######################################################################
+
 
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
@@ -12,8 +12,8 @@ fancy_echo() {
   echo "$1"
 }
 
-# TODO - run this instead of installing xcode?
-# xcode-select --install
+# Accept the Terms of Service from this
+xcode-select --install
 
 if [ ! -r ~/.bash_profile ]; then
   echo -e 'if [ -r ~/.bashrc ]; then
