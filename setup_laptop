@@ -53,6 +53,8 @@ brew "python3"
 brew "yarn"
 brew "fish"
 brew "starship"
+brew "wxmac"
+brew "tldr"
 EOF
 
 read -p "Set up Postgres? (Y/n) " -n 1 -r
